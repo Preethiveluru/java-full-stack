@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<head>
+    
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //default parameters
+        const sum =(x=2,y=5)=> x+y;
+        document.write("<br>sum : "+sum(10,20))
+        document.write("<br>sum : "+sum(2))
+        document.write("<br>sum : "+sum())
+
+       const add = (...arr) => {
+          document.write("<br>total no of inputs: " + arr.length);
+          let sum = 0;
+          for(let i of arr){
+            sum+=i;
+          }
+          return sum;
+       }
+       document.write("<br>sum : "+add(2,3,3,4,5))
+        //rest parameters
+       const add2 = (x,y,...arr) => {
+          document.write("<br>total no of inputs: " + arr.length);
+          let sum = 0;
+          for(let i of arr){
+            sum+=i;
+          }
+          return sum;
+       }
+       document.write("<br>sum : "+add2(2,3,3,4,5))
+       //template literarls
+       const add3 = (x,y,...arr) => {
+          document.write(`<br>total no of inputs: ${arr.length}`);
+          let sum = 0;
+          for(let i of arr){
+            sum+=i;
+          }
+          return sum;
+       }
+       document.write("<br>sum : "+add3(2,3,3,4,6))
+
+       //string literals
+
+       var firstname = "preethi"
+       var lastname = "chowdary"
+       document.write(`<br>full name : ${firstname} ${lastname}`)
+
+
+        
+    </script> 
+    
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+    <script>
+        function factorialtable() {
+            var n = parseInt(document.getElementById("no").value)
+            var fact = 1;
+            for (let i = 1; i <= n; i++) {
+                fact = fact * i
+                document.getElementById("result").innerHTML += "<tr><td>" + i + "</td><td>" + fact + "</td></tr></table >";
+            }
+
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+   <input type="text" id="no" value="enter the value" onfocus="this.value=' '" onblur="factorialtable()"><br>
+    
+
+    <table>
+        <table id="result" border=2px solid black align="center" width ="50%">
+            <tr>
+                <th>number</th>
+                <th>factorial</th>
+            </tr>
+        </table>
+
+</body>
+
+</html>

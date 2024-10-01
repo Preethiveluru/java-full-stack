@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var names= ["preethi","chandra","lakshmi"]
+    document.write("array length :" + names.length)
+    document.write("<br>array " + names)
+    for(let i of names)
+        document.write("<br>"+ i);
+     
+    names[1] = "gautam";
+    document.write("<br>names: "+ names);
+
+    names.push("arasu")
+    document.write("<br>names: "+ names);
+
+    names.pop()
+    document.write("<br>names: "+ names);
+
+    names.unshift("priya")
+    document.write("<br>names: "+ names);
+
+    names.shift("priya")
+    document.write("<br>names: "+ names);
+    names.push("shruthi")
+    document.write("<br>names: "+ names);
+    names.push("chandra")
+    document.write("<br>names: "+ names);
+
+
+
+    names.splice(1,2)
+    document.write("<br>names: "+ names);
+
+    names.length=4;
+    document.write("<br>names: "+ names);
+
+    names.length=2;
+    document.write("<br>names: "+ names);
+
+    var  fruits= new Array("apple","orange","pineapple")
+    document.write("<br>array length :" + fruits.length)
+    document.write("<br>array " + fruits)
+    for(let i of fruits)
+        document.write("<br>"+ i);
+
+
+
+     
+    </script>
+   
+    
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //before es6
+        let employee = {eid :100 ,ename:'preethi',esalary:10000}
+        let name = employee.ename;
+        let id =employee.eid;
+        let salary=employee.esalary;
+        document.write("<br> employee id : "+id)
+        document.write("<br> employee name : "+name)
+        document.write("<br> employee salary : "+salary)
+
+        //from es6
+        let{ename,esalary,eid}=employee
+        
+        document.write("<br> employee id : "+eid)
+        document.write("<br> employee name : "+ename)
+        document.write("<br> employee salary : "+esalary)
+
+        //from es6
+        let{ename : e,esalary :s,eid :i}=employee
+        
+        document.write("<br> employee id : "+i)
+        document.write("<br> employee name : "+e)
+        document.write("<br> employee salary : "+s)
+
+        //javascript - array desructing assignment
+
+        let fruits=["mango","apple","orange"]
+        let[x,y,z]=fruits
+        document.write("<br> X: "+x)
+        document.write("<br> Y : "+y)
+        document.write("<br>Z : "+z)
+
+        
+        let[x1, ...z1]=fruits
+        document.write("<br> X: "+x1)
+        document.write("<br> Y : "+z1)
+       
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

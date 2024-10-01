@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+    <script>
+        function findfactorial(){
+           var n = parseInt(document.getElementById("n").value)
+           var fact = 1;
+           for( let i=1;i<=n;i++){
+            fact=fact*i
+           }
+        document.write("factorial of " +n +"is"+ fact)
+
+        }
+
+    </script>
+</head>
+<body>
+    enter the number : <input type="text" id="n"/>
+    <br>
+    <button onclick="findfactorial()"> find factorial</button>
+    
+</body>
+</html>
