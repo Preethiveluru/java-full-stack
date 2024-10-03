@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script>
+        //dialog box
+
+        var name = window.prompt("enter your name");
+        alert("welcome" + name);
+        var res = confirm("do u want to continue?")
+        alert(res)
+
+
+
+
+
+
+
+
+
+
+
+
+        var flag = false;
+
+        function showhide(){
+            if (flag==false){
+                document.getElementById("mydiv").style.visibility="hidden"
+            }
+            else{
+                document.getElementById("mydiv").style.visibility="visible"
+            }
+            flag =!flag
+
+
+            let animals =["dog","cat","fish","bird"];
+            var mylistitem = "<ul>"
+            for (let animal of animals){
+                mylistitem += "<li onclick=setimage('"+animal+"')>" + animal + "</li>"
+            }
+            mylistitem +="<ul>"
+            document.getElementById("mydiv").innerHTML=mylistitem
+        }
+        function setimage(animal){
+            document.getElementById("myimagediv").innerHTML = "<br> you have selected : "+animal;
+            switch(animal){
+                case 'dog':
+                    document.getElementById("myimagediv").innerHTML += "<br><img src ='https://th.bing.com/th?id=OIP.5aKhA8rhSGnJzNnkGJgtLwHaLH&w=204&h=306&c=8&rs=1&qlt=90&o=6&cb=13&dpr=1.5&pid=3.1&rm=2' width=200 height =100 </img>"
+                    break
+                case 'cat':
+                    document.getElementById("myimagediv").innerHTML += "<br><img src ='https://th.bing.com/th?id=OIP.O21O10UUMdtcI_BsMbZQ_wHaHv&w=244&h=255&c=8&rs=1&qlt=90&o=6&cb=13&dpr=1.5&pid=3.1&rm=2' width=200 height =100 </img>"
+                    break  
+                case 'fish':
+                    document.getElementById("myimagediv").innerHTML += "<br><img src ='https://th.bing.com/th?id=OIP.OQ9bpEwoLCZvpwV7-XjZ9AHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&cb=13&dpr=1.5&pid=3.1&rm=2' width=200 height =100 </img>"
+                    break 
+                case 'bird':
+                    document.getElementById("myimagediv").innerHTML += "<br><img src ='https://th.bing.com/th?id=OIP.3hTkhdPZ8PRL3R6saGGNAgHaE7&w=306&h=204&c=8&rs=1&qlt=90&o=6&cb=13&dpr=1.5&pid=3.1&rm=2' width=200 height =100 </img>"
+                    break     
+            }  
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+    <br><br>
+    <button onclick="showhide()" >show or hide</button>
+    <br><br>
+    <div id="mydiv" style="width: 300px; height: 200px; border: 2px solid green; border-radius: 25px;"></div>
+    <div id="myimagediv" style="width: 300px; height: 200px; border: 2px solid green; border-radius: 25px;">
+
+    </div>
+</body>
+</html>

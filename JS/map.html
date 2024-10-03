@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //map
+        let map1=new Map()
+        map1.set(1,"java")
+        map1.set(2,"python")
+        map1.set(3,"js")
+
+        //iterating mapo
+        for(let [k,v] of map1)
+       document.write(`<br> ${k} => ${v}`)// document.write("<br>" + k + "=>"+v)
+
+       for( let k of map1.keys()){
+        document.write("<br>"+k+"=>"+ map1.get(k))
+       }
+        //deleting
+       map1.delete(2)
+       for( let k of map1.keys()){
+        document.write("<br>"+k+"=>" +map1.get(k))
+       }
+
+       //storing objects
+
+       let map3=new Map();
+       map3.set(101,{id:101 ,name: "preethi" ,salary : 10000})
+       map3.set(102,{id:102 ,name: "chandra" ,salary : 20000})
+       map3.set(103,{id:103 ,name: "laksmi" ,salary : 30000})
+
+       document.write("<br>" + map3)
+
+       for (let [key,emp ] of map3){
+        let {id,name,salary}=emp;
+        document.write("<br>" + key + " => { id : "+id+",name: "+name+",salary : "+salary+ "}" )
+       }
+       
+       //weak map
+
+       let map4 = new WeakMap();
+       let key1 ={id:101}
+       map3.set(key1,{id:101 ,name: "preethi" ,salary : 10000})
+       map3.set({id:102},{id:102 ,name: "chandra" ,salary : 20000})
+       map3.set({id:103},{id:103 ,name: "laksmi" ,salary : 30000})
+
+       document.write("<br> Test : "+map4)
+
+       map3.delete(key1)
+
+       for (let [key,emp ] of map3){
+        let {id,name,salary}=emp;
+        document.write("<br>" + key + " => { id : "+id+",name: "+name+",salary : "+salary+ "}" )
+       }
+       
+
+
+    </script>
+    
+</body>
+</html>

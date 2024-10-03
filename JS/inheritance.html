@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class person{
+            constructor(name,email){
+                this.name=name
+                this.email=name
+            }
+
+            displaypersondetails(){
+                document.write("<br> employeename:" +this.name)
+                document.write("<br> employee email :" +this.email)
+            }
+            }
+
+        class employee extends person{
+            constructor(name,email,id,salary){
+                super(name,id)
+                this.id=id
+                this.salary=salary
+            }
+
+            displayemplyeedetails(){
+                super.displaypersondetails()
+                document.write("<br> employee id :"+this.id)
+                document.write("<br> employee salary :"+this.salary)
+            }
+        }
+
+        let person1 = new employee("preethi","chowdarypreethi582@gmail.com",101,20000)
+        let person2 = new employee("lakshmi","lakshmi@gmail.com",102,30000)
+
+        person1.displayemplyeedetails()
+        person2.displayemplyeedetails()
+    </script>
+    
+</body>
+</html>

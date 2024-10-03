@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+
+    <script>
+        let s=new String("java script")
+        let s1="java script"
+        document.write("<br>"+s1[0])
+        document.write("<br>"+s1.charAt(3))
+
+        let s2=s1.concat(" world")
+        document.write("<br>"+s2)
+        document.write("<br>"+s1.toLowerCase())
+        document.write("<br>"+s1.toUpperCase())
+        document.write("<br>"+s1.length)
+        document.write("<br>"+s1.indexOf('a'))
+        document.write("<br>"+s1.lastIndexOf('a'))
+        document.write("<br>"+s1.substring(2,3))
+        document.write("<br>"+s1.substring(4))
+        document.write("<br>"+s1.substr(6,2))
+
+        let s3 = s1.split(" ")
+        for(let i of s3)
+           document.write("<br>"+i)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
