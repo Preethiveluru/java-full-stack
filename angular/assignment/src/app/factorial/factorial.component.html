@@ -1,0 +1,26 @@
+
+
+<div class="container">
+    <h2>Factorial Table</h2>
+  
+    <!-- Input for number with ngModel -->
+    enter the number <input type="text" [(ngModel)]="num"  />
+  
+    <!-- Button to trigger factorial calculation -->
+    <button (click)="generateFactorialTable()">Generate Table</button>
+  
+    <!-- Display factorial table -->
+    <table *ngIf="factorialTable.length > 0" border="1" style="margin-top: 20px;">
+      <tr>
+        <th>Number</th>
+        <th>Factorial</th>
+      </tr>
+      <tr *ngFor="let entry of factorialTable">
+        <td>{{ entry.number }}</td>
+        <td>{{ entry.factorial }}</td>
+      </tr>
+    </table>
+  </div>
+  
+
+

@@ -33,43 +33,68 @@
 </head>
 <body>
     <table align="center">
-    <tr><th colspan="4"> <input type="text"  id="txt"></th></tr>
+    <tr><th colspan="4"> <input type="text"  id="result"></th></tr>
     <tr>
-        <td> <button>C</button></td>
-        <td> <button>%</button></td>
-        <td> <button><=</button></td>
-        <td> <button>/</button></td>
+        <td> <button onclick="delet()">C</button></td>
+        <td> <button onclick="addtoresult('%')">%</button></td>
+        <td> <button onclick="addtoresult('<=')"> <=</button></td>
+        <td> <button onclick="addtoresult('/')">/</button></td>
         
 
     </tr>
-    <tr><td> <button>7</button></td>
-        <td> <button>8</button></td>
-        <td> <button>9</button></td>
-        <td> <button>*</button></td>
+    <tr><td> <button onclick="addtoresult('7')">7</button></td>
+        <td> <button onclick="addtoresult('8')">8</button></td>
+        <td> <button onclick="addtoresult('9')">9</button></td>
+        <td> <button onclick="addtoresult('*')">*</button></td>
         
 
     </tr>
-    <tr><td> <button>4</button></td>
-        <td> <button>5</button></td>
-        <td> <button>6</button></td>
-        <td> <button>-</button></td>
+    <tr><td> <button onclick="addtoresult('4')">4</button></td>
+        <td> <button onclick="addtoresult('5')">5</button></td>
+        <td> <button onclick="addtoresult('6')">6</button></td>
+        
+        <td> <button onclick="addtoresult('-')">-</button></td>
         
 
     </tr>
-    <tr><td> <button>1</button></td>
-        <td> <button>2</button></td>
-        <td> <button>3</button></td>
-        <td> <button>+</button></td>
+    <tr><td> <button onclick="addtoresult('1')">1</button></td>
+        <td> <button onclick="addtoresult('2')">2</button></td>
+        <td> <button onclick="addtoresult('3')">3</button></td>
+        <td> <button onclick="addtoresult('+')">+</button></td>
         
 
     </tr>
-    <tr><td> <button>00</button></td>
-        <td> <button>0</button></td>
-        <td> <button>.</button></td>
-        <td> <button>=</button></td>
+    <tr><td> <button onclick="addtoresult('00')">00</button></td>
+        <td> <button onclick="addtoresult('0')">0</button></td>
+        <td> <button onclick="addtoresult('.')">.</button></td>
+        <td> <button onclick="calculateresult()">=</button></td>
         
 
     </tr>
 </table>
+
+<script>
+   
+
+    function addtoresult(value){
+        let inp=document.getElementById('result');
+        inp.value+=value;
+
+    }
+    function delet(){
+        document.getElementById('result').value= '';
+        
+    }
+    
+    function calculateresult(){
+        const resultField = document.getElementById('result');
+        try {
+            resultField.value = eval(resultField.value);
+        } catch {
+            resultField.value = 'Error';
+        }
+
+    }
+</script>
 </body>
 </html>
