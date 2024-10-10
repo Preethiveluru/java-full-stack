@@ -1,0 +1,10 @@
+<h1>Angular service</h1>
+<br> <h1>Addition :{{ sum }}</h1>
+
+<br> enter the number<input type="text" [(ngModel)]="input" >
+<br>
+<button (click)="getfactorialvalues()"> FACT</button>
+<table border="1" width="70%" align="center">
+  <tr><th>number</th><th>factorials</th></tr>
+  <tr *ngFor="let fact of factorials; let i=index"><td>{{i+1}}</td><td>{{fact}}</td></tr>
+</table>
