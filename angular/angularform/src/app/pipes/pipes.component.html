@@ -1,0 +1,21 @@
+<div>
+    <table width="80%">
+        <tr><td>uppercase pipe</td><td>{{name | uppercase}}</td></tr>
+        <tr><td>Lowercase pipe</td><td>{{name | lowercase}}</td></tr>
+        <tr><td>Titlecase pipe</td><td>{{name | titlecase}}</td></tr>
+
+    </table>
+    <br><br><hr>
+    <table width="100%">
+        <tr><td>date pipe</td><td>{{ date }}</td></tr>
+        <tr><td>date pipe</td><td>{{ date | date:'dd/MMM/yyyy' }}</td></tr>
+        <tr><td>date pipe</td><td>{{ date | date:'dd-MM-yyyy' }}</td></tr>
+        <tr><td>date pipe</td><td>{{ date | date:'fullDate' }}</td></tr>
+        <tr><td>date pipe</td><td>{{ date | date:'fullDate'|uppercase }}</td></tr>
+    </table>
+    <br><br><hr>
+    <table width="80%">
+        <tr><td>percentage pipe</td><td>{{ 0.9 | percent }}</td></tr>
+        <tr><td>currency pipe</td><td>{{ 675846.980 | currency:"USD" }}</td></tr>
+    </table>
+</div>
