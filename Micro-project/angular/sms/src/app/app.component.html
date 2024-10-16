@@ -1,0 +1,184 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <style>
+    h1 {
+      text-align: center;
+      color: #c434d1;
+      font-family: 'Arial';
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      text-shadow: 4px 4px 8px rgba(7, 162, 54, 0.3);
+    }
+
+    body {
+      background-image: url('https://th.bing.com/th/id/OIP.HXDP2PtvPtfZgzTwmeU7NgHaDe?rs=1&pid=ImgDetMain'); 
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      
+    }
+
+    .form-container {
+      background-color: #ca3f3f;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(168, 30, 30, 0.2);
+    }
+    .form-control {
+      border-radius: 5px;
+      border: 1px solid #3cdb4c;
+      box-shadow: inset 0 4px 5px rgba(214, 117, 117, 0.1);
+      margin-top: 5px;
+      margin-bottom: 15px;
+    
+
+    }
+    label {
+      font-weight: bold;
+      color: #bb581a;
+    }
+    
+
+  </style>
+</head>
+
+<body>
+  <h1>Student Management System</h1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <form #StudentForm="ngForm">
+          <!-- Student ID -->
+          <div class="form-group">
+            <label for="Student Id">Student Id : </label>
+            <input type="text" class="form-control" name="id" #id="ngModel" ngModel required pattern="[0-9]+" />
+          </div>
+          <div *ngIf="id.touched">
+            <div *ngIf="id.errors?.['required']">
+              <b style="color: rgb(39, 115, 203);">Student Id is required.</b>
+            </div>
+            <div *ngIf="id.errors?.['pattern']">
+              <font color="red"><b>Invalid Student Id.</b></font>
+            </div>
+          </div>
+
+          <!-- Student Name -->
+          <div class="form-group">
+            <label for="Student Name">Student Name :</label>
+            <input type="text" class="form-control" name="name" #name="ngModel" ngModel required pattern="[a-zA-Z ]+" />
+          </div>
+          <div *ngIf="name.touched">
+            <div *ngIf="name.errors?.['required']">
+              <b style="color: rgb(39, 115, 203);">Student Name is required.</b>
+            </div>
+            <div *ngIf="name.errors?.['pattern']">
+              <font color="red"><b>Invalid Student Name.</b></font>
+            </div>
+          </div>
+
+          <!-- Gender -->
+          <div class="form-group">
+            <label for="Gender">Gender : </label>
+            <select class="form-control" name="gender" #gender="ngModel" ngModel required>
+              <option value="" disabled selected>Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div *ngIf="gender.touched && gender.errors?.['required']">
+            <b style="color: rgb(39, 115, 203);">Gender is required.</b>
+          </div>
+
+          <!-- Date of Birth -->
+          <div class="form-group">
+            <label for="Date of Birth">Date of Birth : </label>
+            <input type="date" class="form-control" name="dob" #dob="ngModel" ngModel required />
+          </div>
+          <div *ngIf="dob.touched && dob.errors?.['required']">
+            <b style="color: rgb(39, 115, 203);">Date of Birth is required.</b>
+          </div>
+
+          <!-- Father's Name -->
+          <div class="form-group">
+            <label for="Father's Name">Father's Name :</label>
+            <input type="text" class="form-control" name="fatherName" #fatherName="ngModel" ngModel required pattern="[a-zA-Z ]+" />
+          </div>
+          <div *ngIf="fatherName.touched">
+            <div *ngIf="fatherName.errors?.['required']">
+              <b style="color:rgb(39, 115, 203);">Father's Name is required.</b>
+            </div>
+            <div *ngIf="fatherName.errors?.['pattern']">
+              <font color="red"><b>Invalid Father's Name.</b></font>
+            </div>
+          </div>
+
+          <!-- Contact Number -->
+          <div class="form-group">
+            <label for="Contact Number">Contact Number :</label>
+            <input type="text" class="form-control" name="contactNo" #contactNo="ngModel" ngModel required pattern="[0-9]+" />
+          </div>
+          <div *ngIf="contactNo.touched">
+            <div *ngIf="contactNo.errors?.['required']">
+              <b style="color: rgb(39, 115, 203);">Contact Number is required.</b>
+            </div>
+            <div *ngIf="contactNo.errors?.['pattern']">
+              <font color="red"><b>Invalid Contact Number.</b></font>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <button class="btn btn-success" (click)="insertStudent(StudentForm.value)">
+            Insert
+          </button>
+          &nbsp;&nbsp;
+          <button class="btn btn-primary" (click)="updateStudent(StudentForm.value)">
+            Update
+          </button>
+          &nbsp;&nbsp;
+          <button class="btn btn-danger"(click)="deleteStudent(StudentForm.value)"  >
+            Delete
+          </button>
+          &nbsp;&nbsp;
+          <button class="btn btn-warning" (click)="findStudent(StudentForm.value)">
+            Find
+          </button>
+          &nbsp;&nbsp;
+          <button class="btn btn-info" (click)="findAllStudents()">
+            Find All
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <p align="center">
+    <font color="green"><b>{{result}}</b></font>
+  </p>
+  <table align="center" *ngIf="flag">
+    <tr>
+      <th>Student Id</th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Date of Birth</th>
+      <th>Father's Name</th>
+      <th>Contact No</th>
+    </tr>
+    <tr *ngFor="let student of studentArr">
+      <td>{{student.id}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.gender}}</td>
+      <td>{{student.dob | date}}</td>
+      <td>{{student.fatherName}}</td>
+      <td>{{student.contactNo}}</td>
+    </tr>
+  </table>
+  
+  
+</body>
+
+</html>

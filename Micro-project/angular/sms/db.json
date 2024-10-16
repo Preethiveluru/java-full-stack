@@ -1,0 +1,28 @@
+{
+  "students": [
+    {
+      "id": "101",
+      "name": "chandra",
+      "dob": "11-1-2000",
+      "gender": "male",
+      "fatherName": "venky",
+      "contactNo": "12345678"
+    },
+    {
+      "id": "102",
+      "name": "priya",
+      "dob": "2023-02-28",
+      "gender": "Female",
+      "fatherName": "ddd",
+      "contactNo": "12398765"
+    },
+    {
+      "id": "103",
+      "name": "lakshmi",
+      "dob": "2002-07-04",
+      "gender": "Male",
+      "fatherName": "bbbb",
+      "contactNo": "12345656"
+    }
+  ]
+}

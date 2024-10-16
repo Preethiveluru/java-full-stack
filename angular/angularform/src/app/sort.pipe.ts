@@ -8,7 +8,7 @@ export class SortPipe implements PipeTransform {
   transform(value: any[],args:string):any[] {
      let res:any[]=[];
     if(args==='ascending'){
-      res=value.sort();
+      res=value.sort()
     }
 
     if(args==='descending'){
