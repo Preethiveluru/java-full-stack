@@ -813,7 +813,7 @@ import { useEffect, useState } from "react";
 }
   */
  /* use ref */
-
+/*
  import { useRef } from "react";
  export  default function Ref(){
   const myref=useRef();
@@ -825,4 +825,18 @@ import { useEffect, useState } from "react";
     </div>
   )
  }
+*/
+/* css styling */
 
+/*
+export default function App(){
+  let mystyle = {color:'blue',background:'yellow'}
+
+  return(
+    <>
+    <h1 style={{color:'red',background:'yellow'}}>css inline styling</h1>
+    <h1 style={mystyle}>css inline styling</h1>
+    </>
+  )
+}
+*/

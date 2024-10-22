@@ -1,0 +1,20 @@
+{
+  "students": [
+    {
+      "id": "101",
+      "name": "v preethi",
+      "gender": "Female",
+      "dob": "2024-10-01",
+      "fatherName": "aaaa",
+      "contactNo": "123456"
+    },
+    {
+      "name": "priya",
+      "gender": "Female",
+      "dob": "2024-10-03",
+      "fatherName": "dddd",
+      "contactNo": "3456789345",
+      "id": "102"
+    }
+  ]
+}
