@@ -3,7 +3,17 @@
     {
       "id": "101",
       "name": "preethi",
-      "salary": "345"
+      "salary": "30000"
+    },
+    {
+      "id": "102",
+      "name": "priya",
+      "salary": "500000"
+    },
+    {
+      "id": "103",
+      "name": "chandra",
+      "salary": "600000"
     }
   ]
 }

@@ -67,9 +67,7 @@ class Update extends Component {
   
       if(!error && !error1 && !error2){
       const { Eid, Ename, Esalary } = this.state;
-      /*const result = `Employee Id: ${Eid} \nEmployee Name: ${Ename} \nEmployee Salary: ${Esalary}`;
-      this.setState({ result });*/
-
+      
       let employee =new Employee();
       employee.setId(Eid)
       employee.setName(Ename)
@@ -122,9 +120,12 @@ class Update extends Component {
             <br></br>
             <button type="submit">Update</button>
           </form>
-          <div>
+          <div >
             <br></br>
             
+          </div>
+          <div id='ResultDiv'>
+
           </div>
         </div>
       );

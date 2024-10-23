@@ -1,0 +1,149 @@
+create table tbl_employee(
+    eid number(5),
+    ename varchar2(20),
+    esalary number(5),
+    edate date
+    
+);
+desc tbl_employee;
+
+insert into tbl_employee values(101,'preethi',5555,'01-jan-2002');
+insert into tbl_employee values(102,'priya',2222,'02-jan-2002');
+insert into tbl_employee values(103,'chandra',3333,'01-jan-2003');
+insert into tbl_employee values(104,'lakshmi',4444,'02-jan-2003');
+
+commit;
+select*from tbl_employee;
+insert into tbl_employee values(105,null,5555,'01-jan-2002');
+insert into tbl_employee(eid , esalary) values(106,6666);
+select*from tbl_employee;
+commit;
+--drop table tbl_employee;
+select eid,esalary from tbl_employee;
+
+select *from tbl_employee where eid=101;
+select *from tbl_employee where ename='preethi';
+select *from tbl_employee where eid!=101;
+select *from tbl_employee where eid<>101;.
+
+
+select *from tbl_employee where esalary<=4000;
+select *from tbl_employee where esalary>=4000;
+
+select *from tbl_employee where ename is null;
+select *from tbl_employee where ename is not null;
+select *from tbl_employee where ename <> 'preethi';
+
+select *from tbl_employee where eid in (101,102,106);
+select *from tbl_employee where eid not in (101,102,106);
+
+select *from tbl_employee where eid in (101,102,106) and ename is null
+select *from tbl_employee where eid in (101,102,106) or ename is null;
+
+select * from tbl_employee where esalary between 3000 and 5000;
+select * from tbl_employee where esalary not between 3000 and 5000;
+
+select * from tbl_employee where ename like '_a%';
+select * from tbl_employee where ename like '%a%';
+select * from tbl_employee where ename like '%a';
+select * from tbl_employee where ename like 'p%';
+select * from tbl_employee where ename like '__a%';
+select * from tbl_employee where ename not like '__a%';
+
+
+commit;.
+// delete-delete all or particular records and can rollback
+
+
+delete from tbl_employee;
+rollback;
+select*from tbl_employee;
+
+delete from tbl_employee where eid=101;
+select*from tbl_employee;
+
+//update
+
+update tbl_employee set esalary=5000 where eid=101;
+select*from tbl_employee;
+update tbl_employee set eid=0,esalary=0 where ename is null;
+select * from tbl_employee;
+
+// for getting distinct values 
+
+   select distinct esalary from tbl_employee;
+
+// alter command-add,drop,modify,rename
+
+   alter table tbl_employee add doj date;
+   desc tbl_employee;
+
+// sysdate - to get current date
+
+  select sysdate from dual;
+  select sysdate from tbl_employee;
+  select distinct sysdate from tbl_employee;
+
+  update tbl_employee set doj=sysdate where ename is not null;
+  select * from tbl_employee;
+
+
+  select eid,esalary,esalary+200 from tbl_employee;// we can use expression also in select
+
+  alter table tbl_employee drop column doj;
+
+
+  alter table tbl_employee modify esalary number(10);
+  desc tbl_employee;
+
+alter table tbl_employee rename column esalary to emp_salary;
+
+// rename a  table
+
+  rename tbl_employee to tbl_myemployee;
+
+// copy table
+
+   create table tbl_name as select*from tbl_myemployee;
+
+// truncate-delete all records and cannot rollback
+
+  truncate table tbl_myemployee
+
+// drop-entire table will be delted including struture
+
+   drop table tbl_myemployee;
+
+   alter table tbl_employee add  dno number(10);
+
+   update tbl_employee set dno=10 where eid in (101,102,103,104);
+
+   update tbl_employee set dno=20 where eid  not in (101,102,103,104);
+
+   select*from tbl_employee;
+ 
+// groupby and count
+
+   select dno,count(*) from tbl_employee group by dno;
+
+//group functions
+
+  select dno,count(*) ,sum(emp_salary),min(emp_salary),max(emp_salary),avg(emp_salary)from tbl_employee group by dno;
+
+//having
+select dno,count(*) from tbl_employee group by dno having min(emp_salary)>0;
+
+// alias
+
+select eid as "employee id" from tbl_employee;
+
+// order by
+
+select * from tbl_employee order by eid;
+select * from tbl_employee order by eid desc;
+
+
+
+
+
+

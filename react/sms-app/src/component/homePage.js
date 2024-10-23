@@ -6,14 +6,11 @@ import Delete from "./deleteStudent";
 import Find from "./findStudent";
 import FindAll from "./findAllStudent";
 import "./student.css";
-
 export default class HomePage extends Component {
   render() {
     return (
       <BrowserRouter>
         <div>
-          {/* Navigation Buttons */}
-          
           <div class="header">
           <nav id="na"><Link class=" btn btn-info" to="/insert">Insert</Link>&nbsp;
             <Link class=" btn btn-info" to="/update">Update</Link>&nbsp;
