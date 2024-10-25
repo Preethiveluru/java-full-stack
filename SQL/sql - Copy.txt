@@ -142,6 +142,159 @@ select eid as "employee id" from tbl_employee;
 select * from tbl_employee order by eid;
 select * from tbl_employee order by eid desc;
 
+//joins
+
+ 
+-- create
+CREATE TABLE tbl_agents(
+  agents_code varchar2(10),
+  agents_name varchar2(10),
+  working_area varchar2(10)
+);
+
+desc tbl_agents;
+
+
+insert into tbl_agents values('A101','Agent1','chennai');
+insert into tbl_agents values('A102','Agent2','chennai');
+insert into tbl_agents values('A103','Agent3','banglore');
+insert into tbl_agents values('A104','Agent4','banglore');
+
+select * from tbl_agents;
+
+CREATE TABLE tbl_customers(
+ customers_code varchar2(10),
+  customers_name varchar2(10),
+  customers_area varchar2(10)
+);
+
+desc tbl_customers;
+
+insert into tbl_customers values('c101','customer1','chennai');
+insert into tbl_customers values('c102','customer2','chennai');
+insert into tbl_customers values('c103','customer3','chennai');
+insert into tbl_customers values('c104','customer4','banglore');
+insert into tbl_customers values('c105','customer5','banglore');
+
+select*from tbl_customers;
+
+select a.agents_name,c.customers_name,c.customers_area
+from tbl_agents a,tbl_customers c
+where a.working_area=c.customers_area;
+
+// join keyword with on //equi  inner join 
+
+select a.agents_name,c.customers_name,c.customers_area
+from tbl_agents a join tbl_customers c
+on a.working_area=c.customers_area;
+
+//non equi join
+
+select a.agents_name,c.customers_name,c.customers_area
+from tbl_agents a join tbl_customers c
+on a.working_area <> c.customers_area;
+
+
+insert into tbl_agents values('A106','Agent6','new york');
+insert into tbl_customers values('c106','customer6','delhi');
+
+
+// outer join -3ways
+
+select *
+from tbl_agents a left outer join tbl_customers c
+on a.working_area=c.customers_area;
+
+select *
+from tbl_agents a left join tbl_customers c
+on a.working_area=c.customers_area;
+
+select *
+from tbl_agents a , tbl_customers c
+where a.working_area=c.customers_area(+);
+
+// right join
+
+select *
+from tbl_agents a right outer join tbl_customers c
+on a.working_area=c.customers_area;
+
+select *
+from tbl_agents a right join tbl_customers c
+on a.working_area=c.customers_area;
+
+select *
+from tbl_agents a , tbl_customers c
+where a.working_area(+)=c.customers_area;
+
+select *
+from tbl_agents a full outer join tbl_customers c
+on a.working_area=c.customers_area;
+
+select *
+from tbl_agents a full join tbl_customers c
+on a.working_area=c.customers_area;
+
+// cross join
+select a.agents_name,c.customers_name,c.customers_area
+from tbl_agents a cross join tbl_customers c;
+
+// self join
+
+select * from tbl_agents a,tbl_agents b
+where a.working_area=b.working_area;
+
+
+// subquery
+
+
+select * from tbl_agents where working_area=(select customers_area from tbl_customers where customers_code='c101');
+
+
+
+select*from tbl_customers where customers_area=(
+select working_area from tbl_agents where agents_name='Agent1');
+
+//multi value subquery
+
+select*from tbl_customers where customers_area in (
+select working_area from tbl_agents where agents_name='Agent1' or agents_name='Agent2')
+
+
+// sequence
+
+create sequence seq_empid_genrator  start with 1000 increment by 1 ;
+ 
+select seq_empid_genrator.nextval from dual;
+select seq_empid_genrator.nextval from dual;
+  
+select seq_empid_genrator.currval from dual;
+
+
+//views
+
+
+create view view_aa as select * from employees where employee_id>1000;
+
+select*from view_aa;
+
+update view_aa set name='priya' where employee_id=1003;
+select*from view_aa;
+
+
+select*from employees;
+
+
+delete  from view_aa where employee_id=1004;
+
+drop view view_aa;
+
+select*from view_aa;
+
+
+
+
+
 
 
 

@@ -1,0 +1,253 @@
+//pl-sql
+
+// data types and variables
+
+declare
+eid number(10) := 100;
+ename varchar2(10) default 'preethi';
+esalary number(5) := 12345;
+
+begin
+dbms_output.put_line('eid : ' || eid);
+dbms_output.put_line('ename : ' || ename);
+dbms_output.put_line('esalary : ' || esalary);
+
+end;
+
+0/p : 
+
+eid : 100
+ename : preethi
+esalary : 12345
+
+
+// 
+
+
+declare
+n1 number(5) := 10;
+n2 number(5) :=20;
+
+begin
+dbms_output.put_line('addition : ' || (n1+n2));
+dbms_output.put_line('subtraction : ' || (n1-n2));
+dbms_output.put_line('multiplication : ' || (n1*n2));
+dbms_output.put_line('division : ' || (n1/n2));
+end;
+
+o/p:
+
+addition : 30
+subtraction : -10
+multiplication : 200
+division : .5
+
+
+
+// user input
+
+
+
+declare
+n1 number(5);
+n2 number(5) ;
+
+begin
+
+dbms_output.put_line('enter number1 :');
+n1 := &n1;
+
+
+dbms_output.put_line('enter number2 :');
+n2 := &n2;
+
+
+dbms_output.put_line('addition : ' || (n1+n2));
+dbms_output.put_line('subtraction : ' || (n1-n2));
+dbms_output.put_line('multiplication : ' || (n1*n2));
+dbms_output.put_line('division : ' || (n1/n2));
+end;
+///
+
+
+create table tbl_employee(eid number(5),ename varchar2(20),esalary number(5),edate date);
+desc tbl_employee;
+
+insert into tbl_employee values(101,'preethi',5555,'01-jan-2002');
+insert into tbl_employee values(102,'priya',2222,'02-jan-2002');
+insert into tbl_employee values(103,'chandra',3333,'01-jan-2003');
+insert into tbl_employee values(104,'lakshmi',4444,'02-jan-2003');
+
+declare 
+salary tbl_employee.esalary%type;
+name tbl_employee.ename%type;
+
+begin
+
+select esalary,ename into salary,name  from tbl_employee where eid=&id;
+
+dbms_output.put_line( 'salary : '|| salary);
+dbms_output.put_line( 'ename : '|| name);
+
+
+end;
+
+
+// nested 
+
+declare
+
+outer_variable varchar2(20) := 'global variable';
+
+begin
+   
+   declare
+   
+   inner_variable varchar2(20) := 'local variable';
+   
+   begin
+   
+   dbms_output.put_line(outer_variable);
+   dbms_output.put_line(inner_variable);
+   
+   end;
+
+dbms_output.put_line(outer_variable);
+
+end;
+
+   
+// conditional
+
+
+declare
+  number1 number(3) default 10 ;
+  number2 number(3)default 20;
+  
+begin
+
+ 
+  if number1>number2 then
+     dbms_output.put_line('number 1  is greather');
+  else
+     dbms_output.put_line('number 2  is greather');
+  end if; 
+end;
+
+
+
+declare
+  number1 number(3) default 10 ;
+  number2 number(3)default 20;
+  number3 number(3) default 30;
+  
+begin
+
+ 
+  if number1>number2 and number1>number3 then
+     dbms_output.put_line('number 1  is greather');
+  elsif number2>number3 and number2>number1 then
+     dbms_output.put_line('number 2  is greather');
+     
+  else 
+     dbms_output.put_line('number 3  is greather');
+    
+  end if; 
+end;
+
+
+// CASE
+
+
+DECLARE
+  alpha char(1);
+  
+begin
+  alpha :=&alpha;
+  
+  case alpha
+    when 'r' then
+     dbms_output.put_line('red');
+    when 'g' then
+     dbms_output.put_line('green');
+    when 'b' then
+     dbms_output.put_line('blue');
+    else
+     dbms_output.put_line('unknown color');
+  end case;
+end;
+
+// simple loop
+
+
+declare
+
+n number(3) default 10;
+
+begin 
+
+loop
+
+n := n + 1;
+
+dbms_output.put_line(n);
+
+exit when n=20;
+
+end loop;
+
+end;
+
+ 
+//while loop
+
+declare
+
+n number(3) default 10;
+
+begin 
+
+while n<=20
+
+loop
+
+n := n + 1;
+
+dbms_output.put_line(n);
+
+
+
+end loop;
+
+end;
+//
+declare
+
+n number(3) default 10;
+
+begin 
+
+for b in reverse 10..20
+
+loop
+
+n := n + 1;
+
+dbms_output.put_line(b);
+
+
+
+end loop;
+
+end;
+
+ 
+
+ 
+
+
+
+
+
+
+
