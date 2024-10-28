@@ -1,0 +1,525 @@
+//pl-sql
+
+// data types and variables
+
+declare
+eid number(10) := 100;
+ename varchar2(10) default 'preethi';
+esalary number(5) := 12345;
+
+begin
+dbms_output.put_line('eid : ' || eid);
+dbms_output.put_line('ename : ' || ename);
+dbms_output.put_line('esalary : ' || esalary);
+
+end;
+
+0/p : 
+
+eid : 100
+ename : preethi
+esalary : 12345
+
+
+// 
+
+
+declare
+n1 number(5) := 10;
+n2 number(5) :=20;
+
+begin
+dbms_output.put_line('addition : ' || (n1+n2));
+dbms_output.put_line('subtraction : ' || (n1-n2));
+dbms_output.put_line('multiplication : ' || (n1*n2));
+dbms_output.put_line('division : ' || (n1/n2));
+end;
+
+o/p:
+
+addition : 30
+subtraction : -10
+multiplication : 200
+division : .5
+
+
+
+// user input
+
+
+
+declare
+n1 number(5);
+n2 number(5) ;
+
+begin
+
+dbms_output.put_line('enter number1 :');
+n1 := &n1;
+
+
+dbms_output.put_line('enter number2 :');
+n2 := &n2;
+
+
+dbms_output.put_line('addition : ' || (n1+n2));
+dbms_output.put_line('subtraction : ' || (n1-n2));
+dbms_output.put_line('multiplication : ' || (n1*n2));
+dbms_output.put_line('division : ' || (n1/n2));
+end;
+///
+
+
+create table tbl_employee(eid number(5),ename varchar2(20),esalary number(5),edate date);
+desc tbl_employee;
+
+insert into tbl_employee values(101,'preethi',5555,'01-jan-2002');
+insert into tbl_employee values(102,'priya',2222,'02-jan-2002');
+insert into tbl_employee values(103,'chandra',3333,'01-jan-2003');
+insert into tbl_employee values(104,'lakshmi',4444,'02-jan-2003');
+
+declare 
+salary tbl_employee.esalary%type;
+name tbl_employee.ename%type;
+
+begin
+
+select esalary,ename into salary,name  from tbl_employee where eid=&id;
+
+dbms_output.put_line( 'salary : '|| salary);
+dbms_output.put_line( 'ename : '|| name);
+
+
+end;
+
+
+// nested 
+
+declare
+
+outer_variable varchar2(20) := 'global variable';
+
+begin
+   
+   declare
+   
+   inner_variable varchar2(20) := 'local variable';
+   
+   begin
+   
+   dbms_output.put_line(outer_variable);
+   dbms_output.put_line(inner_variable);
+   
+   end;
+
+dbms_output.put_line(outer_variable);
+
+end;
+
+   
+// conditional
+
+
+declare
+  number1 number(3) default 10 ;
+  number2 number(3)default 20;
+  
+begin
+
+ 
+  if number1>number2 then
+     dbms_output.put_line('number 1  is greather');
+  else
+     dbms_output.put_line('number 2  is greather');
+  end if; 
+end;
+
+
+
+declare
+  number1 number(3) default 10 ;
+  number2 number(3)default 20;
+  number3 number(3) default 30;
+  
+begin
+
+ 
+  if number1>number2 and number1>number3 then
+     dbms_output.put_line('number 1  is greather');
+  elsif number2>number3 and number2>number1 then
+     dbms_output.put_line('number 2  is greather');
+     
+  else 
+     dbms_output.put_line('number 3  is greather');
+    
+  end if; 
+end;
+
+
+// CASE
+
+
+DECLARE
+  alpha char(1);
+  
+begin
+  alpha :=&alpha;
+  
+  case alpha
+    when 'r' then
+     dbms_output.put_line('red');
+    when 'g' then
+     dbms_output.put_line('green');
+    when 'b' then
+     dbms_output.put_line('blue');
+    else
+     dbms_output.put_line('unknown color');
+  end case;
+end;
+
+// simple loop
+
+
+declare
+
+n number(3) default 10;
+
+begin 
+
+loop
+
+n := n + 1;
+
+dbms_output.put_line(n);
+
+exit when n=20;
+
+end loop;
+
+end;
+
+ 
+//while loop
+
+declare
+
+n number(3) default 10;
+
+begin 
+
+while n<=20
+
+loop
+
+n := n + 1;
+
+dbms_output.put_line(n);
+
+
+
+end loop;
+
+end;
+//
+declare
+
+n number(3) default 10;
+
+begin 
+
+for b in reverse 10..20
+
+loop
+
+n := n + 1;
+
+dbms_output.put_line(b);
+
+
+
+end loop;
+
+end;
+
+//
+
+
+declare
+
+employee1 tbl_employee%rowtype;
+
+begin
+
+select * into employee1 from tbl_employee where eid=101;
+
+dbms_output.put_line('id :' || employee1.eid);
+dbms_output.put_line('name :' || employee1.ename);
+dbms_output.put_line('salary :' || employee1.esalary);
+dbms_output.put_line('date :' || employee1.edate);
+end;
+
+
+//procedure
+
+SET SERVEROUTPUT ON;
+
+
+CREATE OR REPLACE PROCEDURE pname IS
+   v_name VARCHAR2(10);
+BEGIN
+   SELECT ename INTO v_name 
+   FROM tbl_employee 
+   WHERE eid = 101;
+
+   DBMS_OUTPUT.PUT_LINE('Employee Name: ' || v_name);
+
+END;
+
+/
+
+begin
+  pname;
+end;
+
+
+
+
+
+SET SERVEROUTPUT ON;
+
+
+CREATE OR REPLACE PROCEDURE pname IS
+   v_name VARCHAR2(10);
+BEGIN
+   SELECT ename INTO v_name 
+   FROM tbl_employee 
+   WHERE eid = 101;
+
+   DBMS_OUTPUT.PUT_LINE('Employee Name: ' || v_name);
+
+END;
+
+/
+
+begin
+  pname;
+end;
+
+
+
+// function
+
+
+SET SERVEROUTPUT ON;
+
+
+CREATE OR REPLACE function addition( a number,b number) return number IS
+   add number(5);
+BEGIN
+   add := a+b;
+
+  return add;
+
+END;
+
+/
+declare
+res number(5);
+begin
+
+  res :=addition(2,3);
+  dbms_output.put_line('addition' || res);
+end;
+
+
+// in -default,constant
+
+
+create or replace procedure myproc (eno out number) is
+begin
+
+eno=eno+1;
+end;
+
+// out - uninitialized variable
+
+create or replace procedure myproc (eno out number) is
+
+
+
+begin
+
+eno :=10;
+eno:=eno+1;
+
+dbms_output.put_line('eno : '|| eno);
+end;
+/
+ 
+
+ declare
+ no number(3) :=10;
+ begin
+ myproc(no);
+ end;
+
+
+// in-out
+
+create or replace procedure myproc (eno in out number) is
+
+
+
+begin
+
+eno :=10;
+eno:=eno+1;
+
+dbms_output.put_line('eno : '|| eno);
+end;
+/
+ 
+
+ declare
+ no number(3) :=10;
+ begin
+ myproc(no);
+ end;
+
+
+// cursor
+
+
+
+declare 
+id tbl_employee.eid%type;
+name tbl_employee.ename%type;
+salary tbl_employee.esalary%type;
+
+cursor t_emp is
+  select eid,ename,esalary from tbl_employee;
+begin 
+ open t_emp;
+ loop
+ fetch t_emp into id , name,salary;
+ exit when t_emp%notfound;
+ dbms_output.put_line(id || ' ' || name ||' '||salary);
+ end loop;
+ close t_emp;
+ 
+end;
+
+
+//EXECPTIONS
+
+declare
+   v_name VARCHAR2(10);
+BEGIN
+   SELECT ename INTO v_name 
+   FROM tbl_employee 
+   WHERE eid = 101;
+
+   DBMS_OUTPUT.PUT_LINE('Employee Name: ' || v_name);
+   
+   
+   exception
+   when NO_DATA_FOUND then
+   DBMS_OUTPUT.PUT_LINE('invalid eid');
+   
+
+END;
+
+
+
+
+declare
+v_age number(2);
+age_error exception;
+begin
+v_age :=&v_age;
+if v_age <=0 then
+raise age_error;
+else
+dbms_output.put_line('you are '||v_age);
+
+end if;
+
+exception
+
+when age_error then
+dbms_output.put_line('age can not be 0 or less thn 0');
+
+end;
+
+
+//package
+
+
+CREATE OR REPLACE PACKAGE my_pack AS
+   FUNCTION Addition(a NUMBER, b NUMBER) RETURN NUMBER;
+   FUNCTION Subtraction(a NUMBER, b NUMBER) RETURN NUMBER;
+END my_pack;
+/
+
+
+CREATE OR REPLACE PACKAGE BODY my_pack AS
+   FUNCTION Addition(a NUMBER, b NUMBER) RETURN NUMBER IS
+      add_result NUMBER;
+   BEGIN
+      add_result := a + b;
+      RETURN add_result;
+      
+   END Addition;
+
+   FUNCTION Subtraction(a NUMBER, b NUMBER) RETURN NUMBER IS
+      sub_result NUMBER;
+   BEGIN
+      sub_result := a - b;
+      RETURN sub_result;
+      
+   END Subtraction;
+END my_pack;
+/
+DECLARE
+   result_add NUMBER;
+   result_sub NUMBER;
+BEGIN
+   
+   result_add := my_pack.Addition(10, 5);
+   DBMS_OUTPUT.PUT_LINE('Addition Result: ' || result_add);
+
+   result_sub := my_pack.Subtraction(10, 5);
+   DBMS_OUTPUT.PUT_LINE('Subtraction Result: ' || result_sub);
+END;
+/
+
+// TRIGGERS
+
+
+
+
+CREATE OR REPLACE TRIGGER my_trigger
+AFTER INSERT OR DELETE OR UPDATE on tbl_employee
+for each row
+BEGIN
+DBMS_OUTPUT.PUT_LINE('emplouee table modified');
+END;
+/
+insert into tbl_employee values(105,'lakshmi',4444,'02-jan-2003');
+
+
+
+
+	
+
+
+ 
+
+ 
+
+
+
+
+
+
+
