@@ -8,7 +8,7 @@ public class MyClass3 {
 	}
 	
 	static void myMethod2() {
-		System.out.println("static or local");
+		System.out.println("static or class");
 	}
 	
 	
