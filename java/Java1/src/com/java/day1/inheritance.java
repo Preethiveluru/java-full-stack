@@ -6,13 +6,13 @@ class  Vehicle{
 	}
 }
 
-class TwoWheeler extends Vehicle{
+//class TwoWheeler extends Vehicle{
 	void noOfWheels() {
 		System.out.println("i have two wheels");
 	}
 }
 
-class Bike extends TwoWheeler{
+//class Bike extends TwoWheeler{
 	void brandName() {
 		System.out.println(" honda ");
 	}
@@ -22,7 +22,7 @@ public class inheritance {
 
 	public static void main(String[] args) {
 		
-		TwoWheeler two = new TwoWheeler();
+//		TwoWheeler two = new TwoWheeler();
 		//two.noOfWheels();
 		//two.noOfEngine();
 		
