@@ -1,6 +1,6 @@
 package com.java.day6;
 
-interface MyInterface{
+interface MyInterface2{
 	void myMethod1();
 	default void myMethod2() {
 		System.out.println("default method");
@@ -15,7 +15,7 @@ interface MyInterface{
 	}
 }
 
-class NormalClass implements MyInterface{
+class NormalClass1 implements MyInterface2{
 	public void myMethod1() {
 		System.out.println("abstract method");
 	}
@@ -32,10 +32,10 @@ class NormalClass implements MyInterface{
 public class java8 {
 
 	public static void main(String[] args) {
-		MyInterface obj= new NormalClass();
+		MyInterface2 obj= new NormalClass1();
 		obj.myMethod1();
 		obj.myMethod2();
-		MyInterface.myMethod();
+		MyInterface2.myMethod();
 		
 
 	}
