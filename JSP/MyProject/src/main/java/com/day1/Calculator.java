@@ -1,4 +1,4 @@
-package com.day1;
+gpackage com.day1;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,7 +29,7 @@ public class Calculator extends HttpServlet {
 		     out.println("<font color = 'blue'>"+(n1+n2)+"</font>");}
 	    
 	    if(tf.equals("subtraction")) {
-	    	 RequestDispatcher rd= request.getRequestDispatcher("Calculator.jsp");
+	    	 RequestDispatcher rd= request.getRequestDjispatcher("Calculator.jsp");
 		     rd.include(request, response);
 			out.println("<font color = 'blue'>"+(n1-n2)+"</font>");}
 	    if(tf.equals("multiplication")) {

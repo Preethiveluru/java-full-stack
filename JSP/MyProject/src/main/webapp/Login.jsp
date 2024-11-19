@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="LoginServlet" method = "post">
+
+<!-- <form action="LoginServlet" method = "post"> -->
+
+<form action="LoginAction.jsp">
 <br>Enter Username <input type="text" name="name"/>
 <br>Enter password <input type="password" name="pw"/>
 <br><input type="submit" value="login" name="btn"/>
