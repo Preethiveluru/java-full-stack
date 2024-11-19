@@ -1,8 +1,22 @@
 package com.day1.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employee")
 public class Employee {
+	
+	@Id
+	@Column(name = "eid")
 	private int id;
+	
+	@Column(name = "ename")
 	private String name;
+	
+	@Column(name = "esalary")
 	private int salary;
 	public int getId() {
 		return id;
