@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- <bean id="emp1" class="com.spring.Employee"> <property name="eid" value="200"></property> 
+		<property name="ename" value="preethi"></property> <property name="esalary" 
+		value="20000"></property> </bean> <bean id="emp2" class="com.spring.Employee"> 
+		<property name="eid" value="0"></property> <property name="ename" value="null"></property> 
+		<property name="esalary" value="0"></property> </bean> -->
+
+	<bean id="emp3" class="com.spring.Employee">
+		<constructor-arg index="0" value="100"></constructor-arg>
+		<constructor-arg index="1" value="gowdham"></constructor-arg>
+		<constructor-arg index="2" value="10000"></constructor-arg>
+		<constructor-arg index="3" ref="address2"></constructor-arg>
+		<constructor-arg index="4" ref="dept2"></constructor-arg>
+
+
+
+	</bean>
+
+	<bean id="address1" class="com.spring.Address">
+		<property name="city" value="chennai"></property>
+		<property name="state" value="Tamilnadu"></property>
+	</bean>
+
+	<bean id="address2" class="com.spring.Address">
+		<property name="city" value="Banglore"></property>
+		<property name="state" value="Karnataka"></property>
+	</bean>
+
+	<bean id="dept1" class="com.spring.Department">
+		<property name="dno" value="1000"></property>
+		<property name="dname" value="channels"></property>
+	</bean>
+
+	<bean id="dept2" class="com.spring.Department">
+		<property name="dno" value="1001"></property>
+		<property name="dname" value="delivery"></property>
+	</bean>
+
+	<!--<bean id="emp4" class="com.spring.Employee" >
+		<property name="eid" value="501"></property>
+		<property name="ename" value="chandra"></property>
+		<property name="esalary" value="2000000"></property>
+		<property name="address" ref="address1"></property>
+		<property name="department" ref="dept1"></property>
+	</bean>-->
+	
+	<bean id="emp4" class="com.spring.Employee" autowire="byType" >
+		<property name="eid" value="501"></property>
+		<property name="ename" value="chandra"></property>
+		<property name="esalary" value="2000000"></property>
+		</bean>
+
+
+	<bean id="question" class="com.spring.Question">
+		<property name="id" value="01"></property>
+		<property name="question"
+			value="what is the captial  of india"></property>
+		<property name="answers">
+			<list>
+				<value>delhhi</value>
+				<value>tamilnadu</value>
+				<value>AP</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="question1" class="com.spring.Question">
+		<constructor-arg index="0" value="01"></constructor-arg>
+		<constructor-arg index="1"
+			value="what is the captial  of tamilnadu"></constructor-arg>
+		<constructor-arg index="2">
+			<list>
+				<value>chennai</value>
+				<value>thiruvallur</value>
+
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- <bean id="book1" class="com.spring.Book"> <property name="books"> <map> 
+		<entry key="aaa" value="bbb"></entry> <entry key="ccc" value="ddd"></entry> 
+		</map> </property> </bean> <bean id="book2" class="com.spring.Book"> <constructor-arg 
+		index="0"> <map> <entry key="ddd" value="bbb"></entry> <entry key="eee" value="ddd"></entry> 
+		</map> </constructor-arg> </bean> -->
+
+	<bean id="author1" class="com.spring.Author">
+		<property name="Authorname" value="aaa"></property>
+		<property name="Location" value="chennai"></property>
+	</bean>
+
+
+	<bean id="author2" class="com.spring.Author">
+		<property name="Authorname" value="aaa"></property>
+		<property name="Location" value="madurai"></property>
+	</bean>
+
+	<bean id="book1" class="com.spring.Book">
+
+		<property name="books">
+			<map>
+				<entry key="aaa" value="bbb"></entry>
+				<entry key="ccc" value="ddd"></entry>
+			</map>
+		</property>
+
+		<property name="authors">
+			<list>
+				<ref bean="author1" />
+				<ref bean="author2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="hello" class="com.spring.Hello" scope="prototype">
+	<property name="message" value="hi this is preeethi"></property>
+	</bean>
+
+
+</beans>
