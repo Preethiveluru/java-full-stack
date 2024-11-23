@@ -6,7 +6,7 @@
         
         <!-- Primary key mapping -->
         <id name="id" column="eid">
-            <generator class="assigned"/>
+            <generator class="assigned"/>88
         </id>
 
         <!-- Column mappings -->
@@ -15,3 +15,4 @@
         
     </class>
 </hibernate-mapping>
+8
