@@ -1,94 +1,87 @@
-import {Component} from 'react';
-import Employee from "../model/Employee";
+
+import { Component } from 'react';
+//import Employee from "../model/Employee";  
 import axios from 'axios';
 import './emp.css';
+
 class Delete extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        Eid: '',
-        Ename: '',
-        Esalary: '',
-        result: '',
-        eidError : '',
-        esalaryError: '',
-        enameError :''
-      };
-    }
-  
-    validateEid = (eid) =>{
-      let re =/^[0-9]+$/;
-      if(eid === ''){
-        return " eid is required";
-      }
-      else if(! re.test(eid)){
-        return"invalid id"
-  
-      }
-      else{
-        return null
-      }
-    }
-    
-   
-    
-  
-    handleResult = () => {
-      let error = this.validateEid(this.state.Eid);
-      this.setState({eidError : error})
-    
-  
-      if(!error ){
-      const { Eid, Ename, Esalary } = this.state;
-      /*const result = `Employee Id: ${Eid} \nEmployee Name: ${Ename} \nEmployee Salary: ${Esalary}`;
-      this.setState({ result }); */
+  constructor(props) {
+    super(props);
+    this.state = {
+      empId: '',    
+      empName: '',  
+      empSalary: '',
+      result: '',
+      empIdError: '', 
+    };
+  }
 
-      let employee =new Employee();
-      employee.setId(Eid)
-      employee.setName(Ename)
-      employee.setSalary(Esalary)
+  
+  validateEmpId = (empId) => {
+    let re = /^[0-9]+$/;
+    if (empId === '') {
+      return "Employee ID is required";
+    } else if (!re.test(empId)) {
+      return "Invalid Employee ID";
+    } else {
+      return null;
+    }
+  };
 
-      axios.delete("http://localhost:3004/employees/"+Eid)
+  
+  handleDelete = () => {
+    let error = this.validateEmpId(this.state.empId);
+    this.setState({ empIdError: error });
+
+    if (!error) {
+      const { empId } = this.state;
+
+      
+      axios.delete(`http://localhost:1212/delete-employee/${empId}`)
         .then(() => {
-          document.getElementById("ResultDiv").innerHTML = "<b>Object deleted</b>";
+          document.getElementById("ResultDiv").innerHTML = "<b>Employee deleted successfully</b>";
         })
         .catch((error) => {
-          console.error("There was an error saving the employee!", error);
+          console.error("There was an error deleting the employee!", error);
+          document.getElementById("ResultDiv").innerHTML = "<b>Error deleting employee!</b>";
         });
-    
-      }
     }
-  
-    changeId =(e) => {
-      this.setState({Eid:e.target.value})
-      let error = this.validateEid(this.state.Eid);
-      this.setState({eidError : error})
-    }
-  
-  render() {
-      return (
-        <div class="container">
-          <form onSubmit={(e) => { e.preventDefault(); this.handleResult(); }}>
-            <br></br>
-            <h1 class="heading">Employee Management System</h1>
-            <label>Eid :</label>
-            <input type='text' name='Eid' value={this.state.Eid} onChange={this.changeId}></input><br></br>
-            <font color="red" ><b>{this.state.eidError}</b></font>
-            <br></br>
-            
-            <br></br>
-            <button type="submit">Delete</button>
-          </form>
-          <div>
-            <br></br>
-           {/* <pre>{this.state.result}</pre>*/}
-          </div>
-          <div id='ResultDiv'>
+  };
 
-          </div>
+  changeEmpId = (e) => {
+    this.setState({ empId: e.target.value });
+    let error = this.validateEmpId(e.target.value);
+    this.setState({ empIdError: error });
+  };
+
+  render() {
+    return (
+      <div className="container">
+        <form onSubmit={(e) => { e.preventDefault(); this.handleDelete(); }}>
+          <br />
+          <h1 className="heading">Employee Management System</h1>
+
+          <label>Employee ID:</label>
+          <input
+            type="text"
+            name="empId"
+            value={this.state.empId}
+            onChange={this.changeEmpId}
+          />
+          <br />
+          <font color="red"><b>{this.state.empIdError}</b></font>
+          <br />
+          <button type="submit">Delete</button>
+        </form>
+
+        <div>
+          <br />
         </div>
-      );
-    }
+
+        <div id="ResultDiv"></div>
+      </div>
+    );
   }
-  
-  export default Delete;
+}
+
+export default Delete;

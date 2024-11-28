@@ -1,102 +1,111 @@
 <html>
-
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 </head>
-
 <body>
-  <h1>Employee Management System</h1>
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-10">
+    <h1 class="text-center">Employee & Department Management System</h1>
+    <div class="row mt-5">
+      <!-- Employee-->
+      <div class="col-md-6">
+        <h3>Employee </h3>
         <form #EmployeeForm="ngForm">
           <div class="form-group">
-            <label for="Employee Id">
-              Employee Id
-            </label>
-            <input type="text" class="form-control" name="id" #id="ngModel" ngModel required pattern="[0-9]+" />
-          </div>
-
-
-          <div *ngIf="id.touched">
-            <div *ngIf="id.errors?.['required']">
-              <b style="color: red;">Employee Id Required.</b>
-            </div>
-            <div *ngIf="id.errors?.['pattern']">
-              <font color="red"><b>Invalid Employee Id.</b></font>
+            <label for="Employee Id">Employee Id</label>
+            <input type="text" class="form-control" name="empId" #id="ngModel" ngModel required pattern="[0-9]+" />
+            <div *ngIf="id.touched">
+              <div *ngIf="id.errors?.['required']">
+                <b style="color: red;">Employee Id is required.</b>
+              </div>
+              <div *ngIf="id.errors?.['pattern']">
+                <font color="red"><b>Invalid Employee Id.</b></font>
+              </div>
             </div>
           </div>
-
-
           <div class="form-group">
-            <label for="Employee Name">
-              Employee Name
-            </label>
-            <input type="text" class="form-control" name="empName" #empName="ngModel" ngModel required
-              pattern="[a-zA-Z]+" />
-          </div>
-          <div *ngIf="empName.touched">
-            <div *ngIf="empName.errors?.['required']">
-              <b style="color: red;">Employee Id Required.</b>
-            </div>
-            <div *ngIf="empName.errors?.['pattern']">
-              <font color="red"><b>Invalid Employee Id.</b></font>
+            <label for="Employee Name">Employee Name</label>
+            <input type="text" class="form-control" name="empName" #empName="ngModel" ngModel required pattern="[a-zA-Z]+" />
+            <div *ngIf="empName.touched">
+              <div *ngIf="empName.errors?.['required']">
+                <b style="color: red;">Employee Name is required.</b>
+              </div>
+              <div *ngIf="empName.errors?.['pattern']">
+                <font color="red"><b>Invalid Employee Name.</b></font>
+              </div>
             </div>
           </div>
-
-
-
-
           <div class="form-group">
-            <label for="Employee Salary">
-              Employee Salary
-            </label>
-            <input type="text" class="form-control" name="empSalary" #empSalary="ngModel" ngModel required
-              pattern="[0-9]+" />
-          </div>
-
-          <div *ngIf="empSalary.touched">
-            <div *ngIf="empSalary.errors?.['required']">
-              <b style="color: red;">Employee Id Required.</b>
-            </div>
-            <div *ngIf="empSalary.errors?.['pattern']">
-              <font color="red"><b>Invalid Employee Id.</b></font>
+            <label for="Employee Salary">Employee Salary</label>
+            <input type="text" class="form-control" name="empSalary" #empSalary="ngModel" ngModel required pattern="[0-9]+" />
+            <div *ngIf="empSalary.touched">
+              <div *ngIf="empSalary.errors?.['required']">
+                <b style="color: red;">Employee Salary is required.</b>
+              </div>
+              <div *ngIf="empSalary.errors?.['pattern']">
+                <font color="red"><b>Invalid Employee Salary.</b></font>
+              </div>
             </div>
           </div>
-
-          <button class="btn btn-success "  (click)="insertEmployee(EmployeeForm.value)">
-            Insert
-          </button>
-          &nbsp;&nbsp;
-          <button class="btn btn-primary" (click) = "updateEmployee(EmployeeForm.value)">
-            Update
-          </button>&nbsp;&nbsp;
-          <button class="btn btn-danger" (click) = "deleteEmployee(EmployeeForm.value)">
-            Delete
-          </button>&nbsp;&nbsp;
-          <button class="btn btn-warning" (click) = "findEmployee(EmployeeForm.value)">
-            Find
-          </button>
-          &nbsp;&nbsp;
-          <button class="btn btn-info" (click) = "findAllEmployee()">
-      
-            Find All
-          </button>
+          <div class="form-group">
+            <label for="Department Id">Department Id</label>
+            <input type="text" class="form-control" name="deptId" #deptId="ngModel" ngModel required pattern="[0-9]+" />
+            <div *ngIf="deptId.touched">
+              <div *ngIf="deptId.errors?.['required']">
+                <b style="color: red;">Department Id is required.</b>
+              </div>
+              <div *ngIf="deptId.errors?.['pattern']">
+                <font color="red"><b>Invalid Department Id.</b></font>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap">
+            <button class="btn btn-success m-1" (click)="insertEmployee(EmployeeForm.value)">Insert</button>
+            <button class="btn btn-primary m-1" (click)="updateEmployee(EmployeeForm.value)">Update</button>
+            <button class="btn btn-danger m-1" (click)="deleteEmployee(EmployeeForm.value)">Delete</button>
+            <button class="btn btn-warning m-1" (click)="findEmployee(EmployeeForm.value)">Find</button>
+            <button class="btn btn-info m-1" (click)="findAllEmployee()">Find All</button>
+          </div>
         </form>
+      </div>
 
+      <!-- Department  -->
+      <div class="col-md-6">
+        <h3>Department </h3>
+        <form #DepartmentForm="ngForm">
+          <div class="form-group">
+            <label for="Department Id">Department Id</label>
+            <input type="text" class="form-control" name="deptId" #deptId="ngModel" ngModel required pattern="[0-9]+" />
+            <div *ngIf="deptId.touched">
+              <div *ngIf="deptId.errors?.['required']">
+                <b style="color: red;">Department Id is required.</b>
+              </div>
+              <div *ngIf="deptId.errors?.['pattern']">
+                <font color="red"><b>Invalid Department Id.</b></font>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Department Name">Department Name</label>
+            <input type="text" class="form-control" name="deptName" #deptName="ngModel" ngModel required pattern="[a-zA-Z ]+" />
+            <div *ngIf="deptName.touched">
+              <div *ngIf="deptName.errors?.['required']">
+                <b style="color: red;">Department Name is required.</b>
+              </div>
+              <div *ngIf="deptName.errors?.['pattern']">
+                <font color="red"><b>Invalid Department Name.</b></font>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap">
+            <button class="btn btn-success m-1" (click)="insertDepartment(DepartmentForm.value)">Insert</button>
+            <button class="btn btn-primary m-1" (click)="updateDepartment(DepartmentForm.value)">Update</button>
+            <button class="btn btn-danger m-1" (click)="deleteDepartment(DepartmentForm.value)">Delete</button>
+            <button class="btn btn-warning m-1" (click)="findDepartment(DepartmentForm.value)">Find</button>
+            <button class="btn btn-info m-1" (click)="findAllDepartment()">Find All</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-  <br>
-
-  <p align="center"><font color="green"><b>{{result}}</b></font></p>
-  <table align="center" width="60%" *ngIf="flag">
-    <tr><th>Employee id</th><th>Employee name</th><th>empSalary</th></tr>
-<tr *ngFor="let emp of employeeArr"><td>{{emp.id}}</td><td>{{emp.empName}}</td><td>{{emp.empSalary}}</td></tr>
-  </table>
-
-
- 
 </body>
-
 </html>

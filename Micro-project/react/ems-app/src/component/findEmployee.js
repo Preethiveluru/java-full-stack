@@ -2,47 +2,48 @@ import { Component } from 'react';
 import axios from 'axios';
 import './emp.css';
 
-
 class Find extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Eid: '',
-      Ename: '',
-      Esalary: '',
-      result: '',
-      eidError: ''
+      empId: '',      
+      empName: '',     
+      empSalary: '',   
+      result: '',      
+      empIdError: ''   
     };
   }
 
-  validateEid = (eid) => {
+  validateEmpId = (empId) => {
     let re = /^[0-9]+$/;
-    if (eid === '') {
-      return "Eid is required";
-    } else if (!re.test(eid)) {
-      return "Invalid ID";
+    if (empId === '') {
+      return "Employee ID is required";
+    } else if (!re.test(empId)) {
+      return "Invalid Employee ID";
     } else {
       return null;
     }
   }
 
+  
   handleResult = (e) => {
     e.preventDefault();
-    let error = this.validateEid(this.state.Eid);
-    this.setState({ eidError: error });
+    let error = this.validateEmpId(this.state.empId);
+    this.setState({ empIdError: error });
 
     if (!error) {
-      const { Eid } = this.state;
+      const { empId } = this.state;
 
-      axios.get(`http://localhost:3004/employees/${Eid}`)
+      
+      axios.get(`http://localhost:1212/read-employee/${empId}`)
         .then((response) => {
           const employee = response.data;
           if (employee) {
-            const result = `Employee Id: ${employee.id} \nEmployee Name: ${employee.name} \nEmployee Salary: ${employee.salary}`;
+            const result = `Employee ID: ${employee.empId} \nEmployee Name: ${employee.empName} \nEmployee Salary: ${employee.empSalary}`;
             const formattedResult = result.replace(/\n/g, "<br/>");
             this.setState({
-              Ename: employee.name,
-              Esalary: employee.salary,
+              empName: employee.name,
+              empSalary: employee.salary,
               result: formattedResult
             });
           } else {
@@ -60,22 +61,22 @@ class Find extends Component {
     }
   }
 
-  changeId = (e) => {
-    const Eid = e.target.value;
-    this.setState({ Eid }, () => {
-      const error = this.validateEid(Eid);
-      this.setState({ eidError: error });
+  changeEmpId = (e) => {
+    const empId = e.target.value;
+    this.setState({ empId }, () => {
+      const error = this.validateEmpId(empId);
+      this.setState({ empIdError: error });
     });
   }
 
   render() {
     return (
-      <div class="container"> 
+      <div className="container">
         <form onSubmit={this.handleResult}>
-          <h1 class="heading">Employee Management System</h1>
-          <label>Eid :</label>
-          <input type='text' name='Eid' value={this.state.Eid} onChange={this.changeId} /><br />
-          <span style={{ color: "red" }}><b>{this.state.eidError}</b></span><br />
+          <h1 className="heading">Employee Management System</h1>
+          <label>Employee ID :</label>
+          <input type="text" name="empId" value={this.state.empId} onChange={this.changeEmpId} /><br />
+          <span style={{ color: "red" }}><b>{this.state.empIdError}</b></span><br />
           <button type="submit">Find</button>
         </form>
         <div>

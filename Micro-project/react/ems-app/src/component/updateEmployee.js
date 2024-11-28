@@ -1,134 +1,158 @@
-import {Component} from 'react';
-import Employee from "../model/Employee";
-import axios from 'axios';
-import './emp.css';
+
+
+import React, { Component } from "react";
+import axios from "axios";
+import "./emp.css";
+
 class Update extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        Eid: '',
-        Ename: '',
-        Esalary: '',
-        result: '',
-        eidError : '',
-        esalaryError: '',
-        enameError :''
+  constructor(props) {
+    super(props);
+    this.state = {
+      empId: "",
+      empName: "",
+      empSalary: "",
+      empIdError: "",
+      empNameError: "",
+      empSalaryError: "",
+      message: "",
+    };
+  }
+
+  validateEmpId = (empId) => {
+    let re = /^[0-9]+$/;
+    if (empId === "") {
+      return "Employee ID is required";
+    } else if (!re.test(empId)) {
+      return "Invalid Employee ID";
+    } else {
+      return null;
+    }
+  };
+
+  validateEmpName = (empName) => {
+    let re = /^[a-zA-Z]+$/;
+    if (empName === "") {
+      return "Employee Name is required";
+    } else if (!re.test(empName)) {
+      return "Invalid Employee Name";
+    } else {
+      return null;
+    }
+  };
+
+  validateEmpSalary = (empSalary) => {
+    let re = /^[0-9]+$/;
+    if (empSalary === "") {
+      return "Employee Salary is required";
+    } else if (!re.test(empSalary)) {
+      return "Invalid Employee Salary";
+    } else {
+      return null;
+    }
+  };
+
+  handleResult = () => {
+    let empIdError = this.validateEmpId(this.state.empId);
+    let empNameError = this.validateEmpName(this.state.empName);
+    let empSalaryError = this.validateEmpSalary(this.state.empSalary);
+
+    this.setState({ empIdError, empNameError, empSalaryError });
+
+    if (!empIdError && !empNameError && !empSalaryError) {
+      const { empId, empName, empSalary } = this.state;
+
+      let employee = {
+        empId,
+        empName,
+        empSalary,
       };
-    }
-  
-    validateEid = (eid) =>{
-      let re =/^[0-9]+$/;
-      if(eid === ''){
-        return " eid is required";
-      }
-      else if(! re.test(eid)){
-        return"invalid id"
-  
-      }
-      else{
-        return null
-      }
-    }
-    validateEname = (ename) =>{
-      let re =/^[a-zA-Z]+$/;
-      if(ename === ''){
-        return " ename is required";
-      }
-      else if(! re.test(ename)){
-        return"invalid id"
-  
-      }
-      else{
-        return null
-      }
-    }
-    validateEsalary = (esalary) =>{
-      let re =/^[0-9]+$/;
-      if(esalary === ''){
-        return " esalary is required";
-      }
-      else if(! re.test(esalary)){
-        return"invalid id"
-  
-      }
-      else{
-        return null
-      }
-    }
-    
-  
-    handleResult = () => {
-      let error = this.validateEid(this.state.Eid);
-      this.setState({eidError : error})
-      let error1 = this.validateEname(this.state.Ename);
-      this.setState({enameError : error1})
-      let error2 = this.validateEsalary(this.state.Esalary);
-      this.setState({esalaryError : error2})
-  
-      if(!error && !error1 && !error2){
-      const { Eid, Ename, Esalary } = this.state;
-      /*const result = `Employee Id: ${Eid} \nEmployee Name: ${Ename} \nEmployee Salary: ${Esalary}`;
-      this.setState({ result });*/
 
-      let employee =new Employee();
-      employee.setId(Eid)
-      employee.setName(Ename)
-      employee.setSalary(Esalary)
-
-      axios.put("http://localhost:3004/employees/"+Eid, employee)
+      axios.put(`http://localhost:1212/update-employee`, employee)
         .then(() => {
-          document.getElementById("ResultDiv").innerHTML = "<b>Object saved</b>";
+          this.setState({ message: "Employee updated successfully!" });
         })
         .catch((error) => {
-          console.error("There was an error saving the employee!", error);
+          this.setState({
+            message: "Error updating employee: " + error.message,
+          });
         });
-      
-      }
     }
-  
-    changeId =(e) => {
-      this.setState({Eid:e.target.value})
-      let error = this.validateEid(this.state.Eid);
-      this.setState({eidError : error})
-    }
-    changeName =(e) => {
-      this.setState({Ename:e.target.value})
-      let error1 = this.validateEname(this.state.Ename);
-      this.setState({enameError : error1})
-    }
-    changeSalary=(e) => {
-      this.setState({Esalary:e.target.value})
-      let error2 = this.validateEsalary(this.state.Esalary);
-      this.setState({esalaryError : error2})
-    }
-    
-  render() {
-      return (
-        <div class="container">
-          <form onSubmit={(e) => { e.preventDefault(); this.handleResult(); }}>
-            <br></br>
-            <h1 class="heading">Employee Management System</h1>
-            <label>Eid :</label>
-            <input type='text'  name="Eid"value={this.state.Eid} onChange={this.changeId}></input><br></br>
-            <font color="red" ><b>{this.state.eidError}</b></font>
-            <br></br>
-            <label>Ename:</label>
-            <input type='text' name='Ename' value={this.state.Ename} onChange={this.changeName}></input><br></br>
-            <font color="red" ><b>{this.state.enameError}</b></font>
-            <br></br>
-            <label>Esalary:</label>
-            <input type='text' name='Esalary' value={this.state.Esalary} onChange={this.changeSalary}></input><br></br>
-            <font color="red" ><b>{this.state.esalaryError}</b></font>
-            <br></br>
-            <button type="submit">Update</button>
-          </form>
-          <div>
-            <br></br>
-            
-          </div>
-        </div>
-      );
-    }
+  };
+
+ 
+
+ 
+  changeEmpId =(e) => {
+    this.setState({empId:e.target.value})
+    let error = this.validateEmpId(this.state.empId);
+    this.setState({empIdError : error})
   }
-  
-  export default Update;
+  changeEmpName =(e) => {
+    this.setState({empName:e.target.value})
+    let error1 = this.validateEmpName(this.state.empName);
+    this.setState({empNameError: error1})
+  }
+  changeEmpSalary=(e) => {
+    this.setState({empSalary:e.target.value})
+    let error2 = this.validateEmpSalary(this.state.empSalary);
+    this.setState({empSalaryError : error2})
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.handleResult();
+          }}
+        >
+          <br />
+          <h1 className="heading">Employee Management System</h1>
+          <label>Employee ID:</label>
+          <input
+            type="text"
+            name="empId"
+            value={this.state.empId}
+            onChange={this.changeEmpId}
+          />
+          <br />
+          <font color="red">
+            <b>{this.state.empIdError}</b>
+          </font>
+          <br />
+          <label>Employee Name:</label>
+          <input
+            type="text"
+            name="empName"
+            value={this.state.empName}
+            onChange={this.changeEmpName}
+          />
+          <br />
+          <font color="red">
+            <b>{this.state.empNameError}</b>
+          </font>
+          <br />
+          <label>Employee Salary:</label>
+          <input
+            type="text"
+            name="empSalary"
+            value={this.state.empSalary}
+            onChange={this.changeEmpSalary}
+          />
+          <br />
+          <font color="red">
+            <b>{this.state.empSalaryError}</b>
+          </font>
+          <br />
+          <button type="submit">Update</button>
+        </form>
+        <div id="ResultDiv">
+          <b>{this.state.message}</b>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Update;

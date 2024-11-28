@@ -1,21 +1,22 @@
-export default class Employee{
-    id;
-    name;
-    salary;
-    constructor(){
-        this.id=0;
-        this.name='';
-        this.salary=0;
+
+export default class Employee {
+    constructor() {
+        this.empId = 0;
+        this.empName = '';
+        this.empSalary = 0;
     }
 
+    setId(empId) {
+        this.empId = empId; 
+    }
 
-    setId(id){
-        this.id=id;
+    setName(empName) {
+        this.empName = empName; 
     }
-    setName(name){
-        this.name=name;
+
+    setSalary(empSalary) {
+        this.empSalary = empSalary; 
     }
-    setSalary(salary){
-        this.salary=salary;
-    }
+
+   
 }
