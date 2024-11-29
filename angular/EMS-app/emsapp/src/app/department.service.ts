@@ -32,12 +32,12 @@ export class DepartmentService {
   }
 
   findDepartment(deptId: number) {
-    this.http.get<Department>(this.url + "read-department/" + deptId).subscribe(dept => this.department = dept);
+    this.http.get<Department>(this.url + "find-department/" + deptId).subscribe(dept => this.department = dept);
     return this.department;
   }
 
   findAllDepartments() {
-    this.http.get<Department[]>(this.url + "readAll-departments").subscribe(deptArr => this.departmentArr = deptArr);
+    this.http.get<Department[]>(this.url + "findall-department").subscribe(deptArr => this.departmentArr = deptArr);
     return this.departmentArr;
   }
 

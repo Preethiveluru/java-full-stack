@@ -33,9 +33,9 @@ export class AppComponent {
     this.employee.empId = data.empId;
     this.employee.empName = data.empName;
     this.employee.empSalary = data.empSalary;
-    this.employee.dept.deptId=data.deptId;
-    alert("deptId");
-    console.log(this.employee)
+    this.employee.department.deptId=data.deptId;
+    //alert(this.employee.department.deptId);
+    // console.log(this.employee)
     this.employeeResult = this.empService.insertEmployee(this.employee);
   }
 
@@ -43,6 +43,7 @@ export class AppComponent {
     this.employee.empId = data.empId;
     this.employee.empName = data.empName;
     this.employee.empSalary = data.empSalary;
+    this.employee.department.deptId=data.deptId;
     this.employeeResult = this.empService.updateEmployee(this.employee);
   }
 
@@ -51,32 +52,19 @@ export class AppComponent {
   }
 
   findEmployee(data: any) {
+    console.log("ID"+ data.empId)
     const employee: Employee = this.empService.findEmployee(data.empId);
     this.employeeResult = `Employee ID: ${employee.empId}, Name: ${employee.empName}, Salary: ${employee.empSalary}`;
   }
 
   findAllEmployee() {
+    console.log("inside comp")
     this.employeeArr = this.empService.findAllEmployee();
+    //console.log(this.employeeArr)
     this.employeeFlag = true;
   }
 
-  findEmployeeByName(data: any) {
-    this.employeeArr = this.empService.findEmployeeByName(data.empName);
-    this.employeeFlag = true;
-  }
 
-  deleteEmployeeByName(data: any) {
-    this.employeeResult = this.empService.deleteEmployeeByName(data.empName);
-  }
-
-  findEmployeeBySalary(data: any) {
-    this.employeeArr = this.empService.findEmployeeBySalary(data.empSalary);
-    this.employeeFlag = true;
-  }
-
-  deleteEmployeeBySalary(data: any) {
-    this.employeeResult = this.empService.deleteEmployeeBySalary(data.empSalary);
-  }
 
   
   insertDepartment(data: any) {

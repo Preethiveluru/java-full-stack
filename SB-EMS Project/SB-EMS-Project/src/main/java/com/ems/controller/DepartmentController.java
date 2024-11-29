@@ -9,7 +9,7 @@ import com.ems.Model.Department;
 import com.ems.service.DepartmentService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins="http://localhost:4200")
 
 public class DepartmentController {
 

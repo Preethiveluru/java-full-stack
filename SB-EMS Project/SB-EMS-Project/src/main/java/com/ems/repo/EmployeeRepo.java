@@ -14,18 +14,18 @@ import com.ems.Model.Employee;
 @Repository
 public interface EmployeeRepo extends CrudRepository<Employee, Integer>{
 	
-	public List<Employee>  findByEmpName(String empName);
-	@Transactional
-	public void deleteByEmpName (String empName);
-	
-	@Query("from Employee where empSalary > :esalary")
-	public List<Employee>  findByEmpSalary(int esalary);
-	
-	@Modifying
-	@Transactional
-	@Query(" delete from Employee where empSalary > :esalary")
-	public  void deleteByEmpSalary(int esalary);
-	
+//	public List<Employee>  findByEmpName(String empName);
+//	@Transactional
+//	public void deleteByEmpName (String empName);
+//	
+//	@Query("from Employee where empSalary > :esalary")
+//	public List<Employee>  findByEmpSalary(int esalary);
+//	
+//	@Modifying
+//	@Transactional
+//	@Query(" delete from Employee where empSalary > :esalary")
+//	public  void deleteByEmpSalary(int esalary);
+//	
 
 	
 }

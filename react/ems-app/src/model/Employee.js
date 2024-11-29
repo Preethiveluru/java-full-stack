@@ -1,21 +1,30 @@
+import Department from "./Department";
+
 export default class Employee{
-    id;
-    name;
-    salary;
+    empId;
+    empName;
+    empSalary;
+    deptId;
+    dep = Department
     constructor(){
-        this.id=0;
-        this.name='';
-        this.salary=0;
+        this.empId=0;
+        this.empName='';
+        this.empSalary=0;
+        
+       this.dep = new Department();
     }
 
 
-    setId(id){
-        this.id=id;
+    setId(empId){
+        this.empId=empId;
     }
-    setName(name){
-        this.name=name;
+    setName(empName){
+        this.empName=empName;
     }
-    setSalary(salary){
-        this.salary=salary;
+    setSalary(empSalary){
+        this.empSalary=empSalary;
+    }
+    setDeptId(deptId) {
+        this.dep.deptId = deptId;
     }
 }

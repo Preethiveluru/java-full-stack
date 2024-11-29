@@ -48,7 +48,7 @@
           </div>
           <div class="form-group">
             <label for="Department Id">Department Id</label>
-            <input type="text" class="form-control" name="deptId" #deptId="ngModel" ngModel required pattern="[0-9]+" />
+            <input type="text" class="form-control" name="deptId" ngModel #deptId="ngModel"  required pattern="[0-9]+" />
             <div *ngIf="deptId.touched">
               <div *ngIf="deptId.errors?.['required']">
                 <b style="color: red;">Department Id is required.</b>
@@ -66,6 +66,15 @@
             <button class="btn btn-info m-1" (click)="findAllEmployee()">Find All</button>
           </div>
         </form>
+        <h2 align="center" ><font color="green">{{employeeResult}}</font></h2>
+ 
+        <div align="center" width="80%">
+          <table *ngIf="employeeFlag" border="4px solid brown" width="60%">
+            <tr><th>Employee Id</th><th>Employee Name</th><th>Employee Salary </th><th>Department Id</th></tr>
+            <tr *ngFor="let employee of employeeArr"><td>{{employee.empId}}</td><td>{{employee.empName}}</td><td>{{employee.empSalary}}</td><td>{{employee.department.deptId}}</td></tr>
+          </table>
+   
+        </div>
       </div>
 
       <!-- Department  -->
@@ -104,6 +113,15 @@
             <button class="btn btn-info m-1" (click)="findAllDepartment()">Find All</button>
           </div>
         </form>
+        <h2 align="center" ><font color="green">{{departmentResult}}</font></h2>
+ 
+        <div align="center" width="80%">
+          <table *ngIf=" departmentFlag" border="4px solid brown" width="60%">
+            <tr><th>Department Id</th><th>Department Name</th></tr>
+            <tr *ngFor="let department of  departmentArr"><td>{{department.deptId}}</td><td>{{department.deptName}}</td></tr>
+          </table>
+   
+        </div>
       </div>
     </div>
   </div>

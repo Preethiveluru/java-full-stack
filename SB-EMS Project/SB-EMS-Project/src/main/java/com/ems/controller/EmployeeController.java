@@ -9,7 +9,7 @@ import com.ems.Model.Employee;
 import com.ems.service.EmployeeService;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://localhost:3000")
 
 public class EmployeeController {
 
@@ -22,6 +22,7 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public void createEmployee(@RequestBody Employee employee) {
+    	System.out.println(employee);
         employeeService.createEmployee(employee);
     }
 
@@ -37,11 +38,14 @@ public class EmployeeController {
 
     @GetMapping("/get/{empId}")
     public Employee getEmployeeById(@PathVariable("empId") int empId) {
-        return employeeService.getEmployeeById(empId);
+    	Employee emp =employeeService.getEmployeeById(empId);
+    	System.out.println(emp);
+        return emp;
     }
 
-    @GetMapping("findall")
+    @GetMapping("/findall")
     public List<Employee> getAllEmployees() {
+    	System.out.println("inside findall java");
         return employeeService.getAllEmployees();
     }
 

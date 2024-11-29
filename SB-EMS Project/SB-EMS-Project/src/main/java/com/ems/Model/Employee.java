@@ -21,7 +21,7 @@ public class Employee {
 	@Column(name="eid")
 	private int empId;
 	
-	@Column(name="ename")
+	@Column(name="ename",length=20)
 	private String empName;
 	
 	@Column(name="esalary")
@@ -61,6 +61,12 @@ public class Employee {
 
 	public void setEmpSalary(int empSalary) {
 		this.empSalary = empSalary;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", empSalary=" + empSalary + ", department="
+				+ department + "]";
 	}
 	
 	

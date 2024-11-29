@@ -17,11 +17,11 @@ public class Department {
     @Column(name = "did")
     private int deptId;
 
-    @Column(name = "dname")
+    @Column(name = "dname", length=20)
     private String deptName;
     
     @OneToMany(mappedBy="department")
-    private List<Employee> employee= new ArrayList<Employee>();
+//    private List<Employee> employee= new ArrayList<Employee>();
 
     public int getDeptId() {
         return deptId;
@@ -38,4 +38,11 @@ public class Department {
     public void setDeptName(String deptName) {
         this.deptName = deptName;
     }
+
+	@Override
+	public String toString() {
+		return "Department [deptId=" + deptId + ", deptName=" + deptName + "]";
+	}
+    
+    
 }
